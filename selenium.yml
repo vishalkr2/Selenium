@@ -1,0 +1,24 @@
+name: Run Selenium Tests
+
+on: [push]
+
+jobs:
+  selenium-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Up Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - name: Set Up Chrome Driver
+        uses: nanasess/setup-chromedriver@v2
+        with:
+          chromedriver-version: 'stable'
+
+      - name: Run Selenium Tests
+        run: mvn test
